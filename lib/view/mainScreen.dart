@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pac_04/model/User.dart';
 import 'package:pac_04/view/navbar.dart';
 
+import 'evaluatorScreen.dart';
 import 'login.dart';
 
 class MainScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class MainScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home:  ListCertificatesEvaluator(),
     );
   }
 }
