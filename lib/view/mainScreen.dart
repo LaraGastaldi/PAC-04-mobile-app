@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pac_04/model/User.dart';
 import 'package:pac_04/view/navbar.dart';
 
+import 'login.dart';
+
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void PushToLogin(){
+    Navigator.push(context,
+        MaterialPageRoute(
+            builder: ((context) =>  TelaLogin())
+        )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
