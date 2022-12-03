@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 class ListCertificatesEvaluator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ButtonStyle GetButtonStyle() {
+      return ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(
+              Color.fromARGB(255, 217, 217, 217)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0))));
+    }
+
     return Scaffold(
         body: Container(
       child: SingleChildScrollView(
@@ -26,7 +35,35 @@ class ListCertificatesEvaluator extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                   )
                 ],
-              ))
+              )),
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ButtonBar(
+                children: [
+                  SizedBox(
+                      width: 150,
+                      child: ElevatedButton(
+                          onPressed: () => {},
+                          child: Text("Curso",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 141, 141, 141))),
+                          style: GetButtonStyle())),
+                  SizedBox(
+                      width: 150,
+                      child: ElevatedButton(
+                          onPressed: () => {},
+                          child: Text("Fase",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 141, 141, 141))),
+                          style: GetButtonStyle()))
+                ],
+              )
+            ],
+          ),
+          SizedBox(height: 20),
+          Divider(height: 3,color: Color.fromARGB(255, 217, 217, 217),indent: 30,endIndent: 30)
         ]),
       ),
     ));
