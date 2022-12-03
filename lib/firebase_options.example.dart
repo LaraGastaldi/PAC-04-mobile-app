@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart'
 ///
 /// Example:
 /// ```dart
-/// import 'firebase_options.dart';
+/// import 'firebase_options.example.dart';
 /// // ...
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAEgdUGXh1sXNGBCl7s76wS5wdKzloOjr0',
-    appId: '1:672796381698:web:f176f58912887cb3ea8d1b',
-    messagingSenderId: '672796381698',
-    projectId: 'pac-04-2022-1',
-    authDomain: 'pac-04-2022-1.firebaseapp.com',
-    storageBucket: 'pac-04-2022-1.appspot.com',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    storageBucket: '',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBVVQHH6gt-qOww2pNVn0JL22kAwglzG5U',
-    appId: '1:672796381698:android:17c29ef04a3fefdcea8d1b',
-    messagingSenderId: '672796381698',
-    projectId: 'pac-04-2022-1',
-    storageBucket: 'pac-04-2022-1.appspot.com',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDGYSplftaHDEnMX0HPMiZIT1j7gevfeH0',
-    appId: '1:672796381698:ios:9f4e366b6068dfaeea8d1b',
-    messagingSenderId: '672796381698',
-    projectId: 'pac-04-2022-1',
-    storageBucket: 'pac-04-2022-1.appspot.com',
-    iosClientId: '672796381698-rabiheuni35vgotf3r95c8nd5sefttad.apps.googleusercontent.com',
-    iosBundleId: 'com.example.pac04',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
+    iosClientId: '',
+    iosBundleId: '',
   );
 }
