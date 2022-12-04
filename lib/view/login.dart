@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'evaluatorScreen.dart';
+
 
 
 class TelaLogin extends StatelessWidget  {
@@ -27,7 +29,12 @@ class TelaLogin extends StatelessWidget  {
     );
 
     final buttonLogin = ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ListCertificatesEvaluator()),
+      );
+      },
       child: Text('Entrar'),
       style: ButtonStyle(
           minimumSize: MaterialStateProperty.all(Size((MediaQuery.of(context).size.width*0.6), (MediaQuery.of(context).size.height*0.05))),
