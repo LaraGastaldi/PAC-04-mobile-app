@@ -34,7 +34,7 @@ class ListCertificatesEvaluator extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("Engenharia de software",style:TextStyle(fontSize: 15,fontWeight:FontWeight.bold)),
+                        Text("Engenharia de software",style:TextStyle(fontSize: 12,fontWeight:FontWeight.bold)),
                         IconButton(onPressed: ()=>{},icon:Icon(Icons.more_vert))
                       ],
                     ),

@@ -15,7 +15,7 @@ class MainScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  ListCertificatesEvaluator(),
+      home:  TelaLogin(),
     );
   }
 }
