@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'evaluatorScreen.dart';
+import 'studantScreen.dart';
 
 
 
@@ -32,7 +33,7 @@ class TelaLogin extends StatelessWidget  {
       onPressed: () {
         Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ListCertificatesEvaluator()),
+        MaterialPageRoute(builder: (context) => ListCertificatesStudant()),
       );
       },
       child: Text('Entrar'),
