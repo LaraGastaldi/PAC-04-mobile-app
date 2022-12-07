@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'certificateDetailsStudent.dart';
 
 class ListCertificatesStudant extends StatelessWidget {
   @override
@@ -30,7 +31,7 @@ class ListCertificatesStudant extends StatelessWidget {
                     Text("Engenharia de software",
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 26),
+                    SizedBox(height: 6),
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
@@ -60,7 +61,13 @@ class ListCertificatesStudant extends StatelessWidget {
                 ],
               ),
             ),
-            IconButton(onPressed: () => {}, icon: Icon(Icons.more_vert))
+            IconButton(onPressed: () => {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CertificateDetailsStudent()),
+              ),
+            },
+                icon: Icon(Icons.more_vert))
           ],
         ),
       );
