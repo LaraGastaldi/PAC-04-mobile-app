@@ -1,10 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dropzone/flutter_dropzone.dart';
 
 import '../utils/headerPage.dart';
 
-class AdicionarCertificado extends StatelessWidget {
+class AdicionarCertificado extends StatefulWidget {
+  @override
+  State<AdicionarCertificado> createState() => _AdicionarCertificado();
+}
+
+class _AdicionarCertificado extends State<AdicionarCertificado> {
+int numberCertificates = 1;
+  Row GetCertificateAdd(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top:10),
+          child: FieldGenerator("Titulo Certificado"),
+        ),
+        Container(
+          margin: EdgeInsets.only(top:10),
+          child:FieldGenerator("Quantidade de horas")
+        )
+        ]
+    );
+  }
+
+  SizedBox FieldGenerator(String fieldName){
+    return SizedBox(
+        width: 250,
+        child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: fieldName,
+            ))
+    );
+  }
+
   Widget build(BuildContext context) {
+    var listCertificates = <Widget>[];
+    listCertificates.add(GetCertificateAdd());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -51,30 +86,10 @@ class AdicionarCertificado extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width - 100,
-                            child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Quantidade de horas',
-                                ))
-                        ),
-                        Stack(
-                          children: [
-                            DropzoneView(
-                                onDrop: (e) => {print("Dropped")},
-                                onDropMultiple: (e) => {print("Multiple")}
-                            ),
-                            Center(child: Text('Drop files here')),
-                          ],
-                        )
-                      ],
-                    )),
+                  width: 800,
+                    child: ListView.builder(shrinkWrap: true,itemCount:numberCertificates ,itemBuilder: (_, index) {
+                      return GetCertificateAdd();
+                    })),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -82,7 +97,12 @@ class AdicionarCertificado extends StatelessWidget {
                       margin: EdgeInsets.only(left:10),
                       child:IconButton(icon: Icon(Icons.add),
                           iconSize: 50,
-                          onPressed: () => {},
+                          onPressed: () => {
+                        setState((){
+                           numberCertificates++;
+                        }
+                        )
+                          },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateColor.resolveWith((
                                   states) => Colors.grey)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pac_04/view/addCertificate.dart';
 import 'package:pac_04/view/mainScreen.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const App(),
+      home: AdicionarCertificado(),
     );
   }
 }
