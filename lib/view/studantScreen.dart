@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'certificateDetailsStudent.dart';
+import 'addCertificate.dart';
 
 class ListCertificatesStudant extends StatelessWidget {
   @override
@@ -128,6 +129,16 @@ class ListCertificatesStudant extends StatelessWidget {
           ))
         ]),
       ),
-    ));
+    ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AdicionarCertificado()),
+          );
+        },
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.add),
+      ),);
   }
 }
