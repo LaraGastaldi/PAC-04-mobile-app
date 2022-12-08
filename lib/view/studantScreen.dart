@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:pac_04/utils/network.dart';
 
 import 'addCertificate.dart';
 import 'certificateDetails.dart';
 import 'certificateDetailsStudent.dart';
+
+import 'certificateDetailsStudent.dart';
+import 'addCertificate.dart';
 
 class ListCertificatesStudant extends StatelessWidget {
   @override
@@ -42,7 +46,7 @@ class ListCertificatesStudant extends StatelessWidget {
                     Text("Engenharia de software",
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 26),
+                    SizedBox(height: 6),
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
@@ -79,7 +83,13 @@ class ListCertificatesStudant extends StatelessWidget {
                 ],
               ),
             ),
-            IconButton(onPressed: () => {}, icon: Icon(Icons.more_vert))
+            IconButton(onPressed: () => {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CertificateDetailsStudent(Horas:number)),
+              ),
+            },
+                icon: Icon(Icons.more_vert))
           ],
         ),
       );
@@ -126,31 +136,6 @@ class ListCertificatesStudant extends StatelessWidget {
                   color: Color.fromARGB(255, 217, 217, 217),
                   indent: 30,
                   endIndent: 30),
-
-              Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: IconButton(icon: Icon(Icons.add),
-                              iconSize: 50,
-                              onPressed: () =>
-                              {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) =>
-                                      AdicionarCertificado()),
-                                )
-                              },
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateColor
-                                      .resolveWith((states) => Colors.grey)
-                              ))
-                      )
-                    ],
-                  ),
-              ),
               Column(
                   children: [
                     getCertificateRegister("20"),
@@ -166,7 +151,16 @@ class ListCertificatesStudant extends StatelessWidget {
             ,
           )
           ,
-        )
-    );
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AdicionarCertificado()),
+          );
+        },
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.add),
+      ));
   }
 }

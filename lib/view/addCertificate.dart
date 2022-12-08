@@ -21,7 +21,7 @@ int numberCertificates = 1;
         ),
         Container(
           margin: EdgeInsets.only(top:10),
-          child:FieldGenerator("Quantidade de horas")
+          child:FieldGenerator("Horas")
         )
         ]
     );
