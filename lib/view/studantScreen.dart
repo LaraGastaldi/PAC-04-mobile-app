@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pac_04/utils/network.dart';
+
+import 'addCertificate.dart';
+import 'certificateDetails.dart';
+import 'certificateDetailsStudent.dart';
 
 class ListCertificatesStudant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    int numberCertificates = 0;
+
+    var numberCertificatesFuture = Newtwork.GetNumberCertificates();
+
+    numberCertificatesFuture.then((value) =>
+    numberCertificates = int.parse(value.toString()));
+
     ButtonStyle GetButtonStyle() {
       return ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(
@@ -12,7 +24,7 @@ class ListCertificatesStudant extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0))));
     }
 
-    Container GetCertificateRegister() {
+    Container getCertificateRegister(String number) {
       return Container(
         width: 290,
         height: 110,
@@ -34,17 +46,24 @@ class ListCertificatesStudant extends StatelessWidget {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.grey),
+                          MaterialStatePropertyAll<Color>(Colors.grey),
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
+                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ))),
                       child: Text(
                         'Pendente',
                         style: TextStyle(fontSize: 12.0),
                       ),
-                      onPressed: () {},
+                      onPressed: () =>
+                      {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              CertificateDetails(Horas: number)),
+                        )
+                      },
                     ),
                   ],
                 )),
@@ -54,9 +73,9 @@ class ListCertificatesStudant extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Horas:", style: TextStyle(fontSize: 10)),
-                  Text("00h",
+                  Text(number + "h",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                 ],
               ),
             ),
@@ -68,59 +87,86 @@ class ListCertificatesStudant extends StatelessWidget {
 
     return Scaffold(
         body: SingleChildScrollView(
-      child: Container(
-        child: Column(children: <Widget>[
-          Container(
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(100, 217, 217, 217),
-                  border: Border(
-                      bottom: BorderSide(
-                          color: Color.fromARGB(255, 217, 217, 217)))),
-              child: Row(
+          child: Container(
+            child: Column(children: <Widget>[
+              Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(100, 217, 217, 217),
+                      border: Border(
+                          bottom: BorderSide(
+                              color: Color.fromARGB(255, 217, 217, 217)))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          height: 45.0,
+                          child: Image.asset("assets/images/user_image.png",
+                              fit: BoxFit.contain)),
+                      SizedBox(width: 10),
+                      const Text(
+                        "Certificados",
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
+                  )),
+              SizedBox(height: 30),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                      height: 45.0,
-                      child: Image.asset("assets/images/user_image.png",
-                          fit: BoxFit.contain)),
-                  SizedBox(width: 10),
-                  const Text(
-                    "Certificados",
-                    style: TextStyle(fontSize: 20),
-                  )
+                  Container(
+                      child: Text(
+                        'Lista de Certificados',
+                        style: TextStyle(fontSize: 30),
+                      )),
                 ],
-              )),
-          SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+              ),
+              SizedBox(height: 20),
+              Divider(
+                  height: 3,
+                  color: Color.fromARGB(255, 217, 217, 217),
+                  indent: 30,
+                  endIndent: 30),
+
               Container(
-                  child: Text(
-                'Lista de Certificados',
-                style: TextStyle(fontSize: 30),
-              )),
-            ],
-          ),
-          SizedBox(height: 20),
-          Divider(
-              height: 3,
-              color: Color.fromARGB(255, 217, 217, 217),
-              indent: 30,
-              endIndent: 30),
-          Container(
-              child: Column(
-            children: [
-              GetCertificateRegister(),
-              GetCertificateRegister(),
-              GetCertificateRegister(),
-              GetCertificateRegister(),
-              GetCertificateRegister(),
-              GetCertificateRegister(),
-              GetCertificateRegister(),
-            ],
-          ))
-        ]),
-      ),
-    ));
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: IconButton(icon: Icon(Icons.add),
+                              iconSize: 50,
+                              onPressed: () =>
+                              {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>
+                                      AdicionarCertificado()),
+                                )
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateColor
+                                      .resolveWith((states) => Colors.grey)
+                              ))
+                      )
+                    ],
+                  ),
+              ),
+              Column(
+                  children: [
+                    getCertificateRegister("20"),
+                    getCertificateRegister("20"),
+                    getCertificateRegister("5"),
+                    getCertificateRegister("7"),
+                    getCertificateRegister("1"),
+                    getCertificateRegister("3"),
+                    getCertificateRegister("10"),
+                  ]
+              )
+            ])
+            ,
+          )
+          ,
+        )
+    );
   }
 }

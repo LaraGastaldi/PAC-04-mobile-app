@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../utils/headerPage.dart';
-import '../utils/network.dart';
-import 'evaluatorScreen.dart';
 
-class CertificateDetailsStudent extends StatelessWidget {
+class CertificateDetails extends StatelessWidget {
   final String Horas;
-  const CertificateDetailsStudent({required this.Horas});
+  const CertificateDetails({required this.Horas});
 
 
 
@@ -25,7 +23,7 @@ class CertificateDetailsStudent extends StatelessWidget {
                   SizedBox(height: 30),
                   Text("Engenharia de Software",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                   SizedBox(height: 20),
                   Row(
                     children: [
@@ -48,7 +46,7 @@ class CertificateDetailsStudent extends StatelessWidget {
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               color: Color.fromARGB(255, 217, 217, 217),
-                          borderRadius: BorderRadius.circular(7)),
+                              borderRadius: BorderRadius.circular(7)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -74,7 +72,7 @@ class CertificateDetailsStudent extends StatelessWidget {
                   SizedBox(height: 10),
                   Text("Status: ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                   Container(
                     margin: EdgeInsets.only(left: 10, top: 10),
                     padding: EdgeInsets.only(left: 10,right: 10),
@@ -84,47 +82,6 @@ class CertificateDetailsStudent extends StatelessWidget {
                     child: Text("Pendente",
                         style: TextStyle(fontSize: 15,letterSpacing: 1.3,color: Colors.white,fontWeight:FontWeight.bold)),
                   ),
-                  SizedBox(height: 30),
-                  Text("Avaliação: ",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                  SizedBox(height: 15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () => {
-                            Newtwork.Reprovar(context)
-                          },
-                          child: Text("Reprovar"),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateColor.resolveWith((states) => Colors.red),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(18),
-                                          topLeft:Radius.circular(18)
-                                      ))))),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      ElevatedButton(
-                          onPressed: () => {
-                            Newtwork.Aprovar(context),
-                          },
-                          child: Text("Aprovar"),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.green),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(18),
-                                          topRight:Radius.circular(18)
-                                      )))))
-                    ],
-                  )
                 ],
               ),
             )

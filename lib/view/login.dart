@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/network.dart';
 import 'evaluatorScreen.dart';
 import 'studantScreen.dart';
 
@@ -9,9 +10,13 @@ class TelaLogin extends StatelessWidget  {
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat',fontSize: 20.0);
 
+  final loginController = TextEditingController();
+  final senhaController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
      final emailField = TextField(
+       controller: loginController,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
@@ -21,20 +26,37 @@ class TelaLogin extends StatelessWidget  {
     );
 
     final passwordField = TextField(
+      controller: senhaController,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Senha",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),),
     );
 
     final buttonLogin = ElevatedButton(
       onPressed: () {
-        Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ListCertificatesStudant()),
-      );
+        var isValidUser = Newtwork.ValidateUser(loginController.text,senhaController.text);
+        if(isValidUser){
+          var isAvaliador = Newtwork.GetPermissaoUser(loginController.text);
+
+          Newtwork.DefineInitialConfig();
+          if(isAvaliador){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ListCertificatesEvaluator()),
+            );
+          }
+          else{
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ListCertificatesStudant()),
+            );
+          }
+        }else{
+          Newtwork.showAlertDialog1(context);
+        }
       },
       child: Text('Entrar'),
       style: ButtonStyle(

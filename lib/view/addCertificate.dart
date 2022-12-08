@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pac_04/utils/network.dart';
+import 'package:pac_04/view/studantScreen.dart';
 
 import '../utils/headerPage.dart';
 
@@ -113,7 +115,9 @@ int numberCertificates = 1;
                 Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                      onPressed: () => {}, child: Text("Enviar certificados")),
+                      onPressed: () => {
+                        Newtwork.Criar(context)
+                      }, child: Text("Enviar certificados")),
                 )
               ],
             )

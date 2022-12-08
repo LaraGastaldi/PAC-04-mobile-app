@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/headerPage.dart';
+import 'certificateDetailsStudent.dart';
 
 class ListCertificatesEvaluator extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class ListCertificatesEvaluator extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0))));
     }
 
-    Container GetCertificateRegister(){
+    Container GetCertificateRegister(String Horas){
       return Container(
         width: 290,
         height: 110,
@@ -37,14 +38,19 @@ class ListCertificatesEvaluator extends StatelessWidget {
                     Row(
                       children: [
                         Text("Engenharia de software",style:TextStyle(fontSize: 12,fontWeight:FontWeight.bold)),
-                        IconButton(onPressed: ()=>{},icon:Icon(Icons.more_vert))
+                        IconButton(onPressed: ()=>{
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CertificateDetailsStudent(Horas:Horas)),
+                        )
+                        },icon:Icon(Icons.more_vert))
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.circle,color: Colors.grey,size: 12),
                         SizedBox(width: 2),
-                        Text("Vinicius Aluno",style:TextStyle(fontSize: 10))
+                        Text("Vini",style:TextStyle(fontSize: 10))
                       ],
                     ),
                     SizedBox(height: 3),
@@ -56,7 +62,7 @@ class ListCertificatesEvaluator extends StatelessWidget {
                           child: Column(
                               children: [
                                 Text("Horas:",style: TextStyle(fontSize: 10)),
-                                Text("00h",style: TextStyle(fontSize: 20,fontWeight:FontWeight.bold))
+                                Text(Horas+"h",style: TextStyle(fontSize: 20,fontWeight:FontWeight.bold))
                               ]
                           ),
                         )
@@ -106,13 +112,13 @@ class ListCertificatesEvaluator extends StatelessWidget {
           Container(
             child:Column(
               children: [
-                GetCertificateRegister(),
-                GetCertificateRegister(),
-                GetCertificateRegister(),
-                GetCertificateRegister(),
-                GetCertificateRegister(),
-                GetCertificateRegister(),
-                GetCertificateRegister(),
+                GetCertificateRegister("20"),
+                GetCertificateRegister("20"),
+                GetCertificateRegister("5"),
+                GetCertificateRegister("7"),
+                GetCertificateRegister("1"),
+                GetCertificateRegister("3"),
+                GetCertificateRegister("10"),
               ],
             )
           )
