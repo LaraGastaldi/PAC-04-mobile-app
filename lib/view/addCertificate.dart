@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pac_04/utils/network.dart';
-import 'package:pac_04/view/studantScreen.dart';
 
 import '../utils/headerPage.dart';
 
@@ -10,27 +10,53 @@ class AdicionarCertificado extends StatefulWidget {
 }
 
 class _AdicionarCertificado extends State<AdicionarCertificado> {
-int numberCertificates = 1;
-  Row GetCertificateAdd(){
+  var nomeCursoController = new TextEditingController();
+  var nomeCertificadoController = new TextEditingController();
+  var horasCertificadoController = new TextEditingController();
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+
+  void AddCertificate() {
+    try {
+      final certificate = <String, dynamic>{
+        "nomeCurso": nomeCursoController.text,
+        "nomeCertificado": nomeCertificadoController.text,
+        "horasCertificado":horasCertificadoController.text
+      };
+
+
+      db.collection("certificate").add(certificate).then((DocumentReference doc) =>
+          print('DocumentSnapshot added with ID: ${doc.id}'));
+    }
+    catch (err) {
+      debugPrint(err.toString());
+    }
+  }
+
+  int numberCertificates = 1;
+
+  Row GetCertificateAdd() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Container(
-          margin: EdgeInsets.only(top:10),
-          child: FieldGenerator("Titulo Certificado"),
-        ),
-        Container(
-          margin: EdgeInsets.only(top:10),
-          child:FieldGenerator("Horas")
-        )
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            child: FieldGenerator("Titulo Certificado",nomeCertificadoController),
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 10),
+              child: FieldGenerator("Horas",horasCertificadoController)
+          )
         ]
     );
   }
 
-  SizedBox FieldGenerator(String fieldName){
+  SizedBox FieldGenerator(String fieldName,TextEditingController controller) {
     return SizedBox(
         width: 250,
         child: TextField(
+          controller: controller,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: fieldName,
@@ -66,6 +92,7 @@ int numberCertificates = 1;
                           child: Container(
                             height: 36,
                             child: TextField(
+                              controller:nomeCursoController,
                               maxLines: 1,
                               style: TextStyle(fontSize: 17),
                               textAlignVertical: TextAlignVertical.center,
@@ -88,34 +115,19 @@ int numberCertificates = 1;
                   ),
                 ),
                 Container(
-                  width: 800,
-                    child: ListView.builder(shrinkWrap: true,itemCount:numberCertificates ,itemBuilder: (_, index) {
-                      return GetCertificateAdd();
-                    })),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left:10),
-                      child:IconButton(icon: Icon(Icons.add),
-                          iconSize: 50,
-                          onPressed: () => {
-                        setState((){
-                           numberCertificates++;
-                        }
-                        )
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateColor.resolveWith((
-                                  states) => Colors.grey)
-                          ))
-                    )
-                  ],
-                ),
+                    width: 800,
+                    child: ListView.builder(shrinkWrap: true,
+                        itemCount: numberCertificates,
+                        itemBuilder: (_, index) {
+                          return GetCertificateAdd();
+                        })),
+                SizedBox(height: 20),
                 Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                      onPressed: () => {
+                      onPressed: () =>
+                      {
+                        AddCertificate(),
                         Newtwork.Criar(context)
                       }, child: Text("Enviar certificados")),
                 )

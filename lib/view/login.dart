@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../utils/network.dart';
-import 'evaluatorScreen.dart';
 import 'studantScreen.dart';
 
 
@@ -39,21 +38,10 @@ class TelaLogin extends StatelessWidget  {
       onPressed: () {
         var isValidUser = Newtwork.ValidateUser(loginController.text,senhaController.text);
         if(isValidUser){
-          var isAvaliador = Newtwork.GetPermissaoUser(loginController.text);
-
-          Newtwork.DefineInitialConfig();
-          if(isAvaliador){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ListCertificatesEvaluator()),
-            );
-          }
-          else{
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => ListCertificatesStudant()),
             );
-          }
         }else{
           Newtwork.showAlertDialog1(context);
         }
