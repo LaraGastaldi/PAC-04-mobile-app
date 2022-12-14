@@ -59,13 +59,4 @@ class Newtwork  {
     );
   }
 
-  static bool ValidateUser(String email,String password){
-
-    return (email == "vini" || email == "gui") && password == "123";
-  }
-
-  static bool GetPermissaoUser(String email){
-    return email == "gui";
-  }
-
 }

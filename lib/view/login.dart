@@ -36,15 +36,10 @@ class TelaLogin extends StatelessWidget  {
 
     final buttonLogin = ElevatedButton(
       onPressed: () {
-        var isValidUser = Newtwork.ValidateUser(loginController.text,senhaController.text);
-        if(isValidUser){
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => ListCertificatesStudant()),
             );
-        }else{
-          Newtwork.showAlertDialog1(context);
-        }
       },
       child: Text('Entrar'),
       style: ButtonStyle(
