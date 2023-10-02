@@ -59,13 +59,8 @@ class Newtwork  {
     );
   }
 
-  static bool ValidateUser(String email,String password){
-
-    return (email == "vini" || email == "gui") && password == "123";
+  static bool ValidateUser(String email){
+    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+    .hasMatch(email); 
   }
-
-  static bool GetPermissaoUser(String email){
-    return email == "gui";
-  }
-
 }
